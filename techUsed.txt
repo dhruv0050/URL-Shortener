@@ -2,3 +2,4 @@
 - Tailwind
 - Shadcn
 - Supabase for backend [Supabase is an open source Firebase alternative.]
+- react-router-dom (for routing)
