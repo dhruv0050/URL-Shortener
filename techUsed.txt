@@ -1,0 +1,4 @@
+- Vite
+- Tailwind
+- Shadcn
+- Supabase for backend [Supabase is an open source Firebase alternative.]
