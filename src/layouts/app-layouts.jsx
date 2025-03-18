@@ -7,7 +7,6 @@ const AppLayout = () => {
       <main>
         {/* {Header} */}
         <Outlet/>
-        {/* {Body} */}
       </main>
       {/* {footer} */}
     </div>

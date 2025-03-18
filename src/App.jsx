@@ -26,8 +26,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/link/:id',
-        element: <Link/> 
-        // {contains all the stats and clicks that has happended on the link}
+        element: <Link/>  // {contains all the stats and clicks that has happended on the link}
       },
       {
         path: '/:id',
@@ -37,8 +36,9 @@ const router = createBrowserRouter([
   }
 ])
 function App() {
-  return 
-    <RouterProvider router={router}/>  
+  return (
+    <RouterProvider router={router} />
+  )    
 }
 
 export default App
