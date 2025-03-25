@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+
 import {createContext, useContext, useEffect} from "react";
 import {getCurrentUser} from "./db/apiAuth";
 import useFetch from "./hooks/use-fetch";
