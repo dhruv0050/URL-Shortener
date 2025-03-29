@@ -5,8 +5,7 @@ import { Outlet } from 'react-router-dom'
 const AppLayout = () => {
   return (
     <div>
-      <main className='min-h-screen w-full container'>
-        {/* {Header} */}
+      <main className='min-h-screen container'>
         <Header/>
         <Outlet/>
       </main>
@@ -17,3 +16,4 @@ const AppLayout = () => {
 }
 
 export default AppLayout
+

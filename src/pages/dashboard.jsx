@@ -5,7 +5,7 @@ import {Filter} from "lucide-react";
 import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card";
 import {Input} from "@/components/ui/input";
 // import {CreateLink} from "@/components/create-link";
-// import LinkCard from "@/components/link-card";
+
 import Error from "@/components/error";
 
 import useFetch from "@/hooks/use-fetch";
@@ -13,6 +13,7 @@ import useFetch from "@/hooks/use-fetch";
 import {getUrls} from "@/db/apiUrls";
 import {getClicksForUrls} from "@/db/apiClicks";
 import {UrlState} from "@/context";
+import LinkCard from "@/components/link-card";
 
 const Dashboard = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -76,9 +77,9 @@ const Dashboard = () => {
         <Filter className="absolute top-2 right-2 p-1" />
       </div>
       {error && <Error message={error?.message} />}
-      {/* {(filteredUrls || []).map((url, i) => (
+      {(filteredUrls || []).map((url, i) => (
         <LinkCard key={i} url={url} fetchUrls={fnUrls} />
-      ))} */}
+      ))}
     </div>
   );
 };
