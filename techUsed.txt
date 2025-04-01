@@ -5,3 +5,4 @@
 - react-router-dom (for routing)
 - react-spinners for loading
 - yup library for input validation
+- react qr codes for qrs

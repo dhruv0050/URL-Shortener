@@ -1,4 +1,4 @@
-import supabase from "./supabase";
+import supabase, {supabaseUrl} from "./supabase";
 
 export async function getUrls(user_id){
     const {data,error} = await supabase
