@@ -1,15 +1,15 @@
 import { useState } from "react";
 
-const useFetch = (cb, options = {}) => {
+const useFetch = (cb, params = {}) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(null);
   const [error, setError] = useState(null);
 
-  const fn = async (...args) => {
+  const fn = async () => {
     setLoading(true);
     setError(null);
     try {
-      const response = await cb(options, ...args);
+      const response = await cb(params);
       setData(response);
       setError(null);
     } catch (error) {

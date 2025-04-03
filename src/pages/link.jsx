@@ -1,5 +1,7 @@
-// import DeviceStats from "@/components/device-stats";
-// import Location from "@/components/location-stats";
+import React from 'react'
+
+import DeviceStats from "@/components/device-stats";
+import Location from "@/components/location-stats";
 import {Button} from "@/components/ui/button";
 import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card";
 import {UrlState} from "@/context";
@@ -53,8 +55,10 @@ const LinkPage = () => {
   }, []);
 
   useEffect(() => {
-    if (!error && loading === false) fnStats();
-  }, [loading, error]);
+    if (!error && loading === false && id) {
+      fnStats();
+    }
+  }, [loading, error, id]);
 
   if (error) {
     navigate("/dashboard");
@@ -97,7 +101,7 @@ const LinkPage = () => {
             <Button
               variant="ghost"
               onClick={() =>
-                navigator.clipboard.writeText(`https://trimr.in/${link}`)
+                navigator.clipboard.writeText(`https://trim.in/${link}`)
               }
             >
               <Copy />

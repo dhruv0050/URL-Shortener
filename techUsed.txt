@@ -7,3 +7,4 @@
 - yup library for input validation
 - react qr codes for qrs
 - ua parser.js to store stats of that particular user that clicked the link that is device,location, etc.
+- recharts library for graphs
