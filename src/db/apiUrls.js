@@ -68,7 +68,7 @@ export async function getLongUrl(id){
     const {data,error} = await supabase
     .from("urls")
     .select("id, original_url")
-    .or(`short_url.eq.${id},custom_url.eq.${id}`)
+    .or('short_url.eq.' + `'${id}'` + ',custom_url.eq.' + `'${id}'`)
     .single()
 
     if(error){

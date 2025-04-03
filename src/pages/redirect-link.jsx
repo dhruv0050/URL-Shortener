@@ -17,11 +17,17 @@ const RedirectLink = () => {
   });
 
   useEffect(() => {
+    console.log("Fetching URL for id:", id);
     fn();
   }, []);
 
   useEffect(() => {
+    console.log("Data received:", data);
+    console.log("Loading state:", loading);
+    console.log("Error state:", error);
+    
     if (!loading && data && data.original_url) {
+      console.log("Redirecting to:", data.original_url);
       fnStats();
       window.location.href = data.original_url;
     }
@@ -33,6 +39,7 @@ const RedirectLink = () => {
         <BarLoader width={"100%"} color="#36d7b7" />
         <br />
         <p className="text-lg">Redirecting...</p>
+        <p className="text-sm text-gray-500">URL ID: {id}</p>
       </div>
     );
   }
@@ -42,6 +49,10 @@ const RedirectLink = () => {
       <div className="flex flex-col items-center justify-center min-h-screen">
         <h1 className="text-2xl font-bold text-red-500">Link not found!</h1>
         <p className="text-gray-500">The requested URL does not exist.</p>
+        <p className="text-sm text-gray-400 mt-2">URL ID: {id}</p>
+        {error && (
+          <p className="text-sm text-red-400 mt-2">Error: {error.message}</p>
+        )}
       </div>
     );
   }
