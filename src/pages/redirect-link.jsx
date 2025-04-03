@@ -8,8 +8,9 @@ import {BarLoader} from "react-spinners";
 
 const RedirectLink = () => {
   const {id} = useParams();
+  const urlId = id?.trim(); // Clean the URL parameter
 
-  const {loading, error, data, fn} = useFetch(getLongUrl, id);
+  const {loading, error, data, fn} = useFetch(getLongUrl, urlId);
 
   const {loading: loadingStats, fn: fnStats} = useFetch(storeClicks, {
     id: data?.id,
@@ -17,9 +18,11 @@ const RedirectLink = () => {
   });
 
   useEffect(() => {
-    console.log("Fetching URL for id:", id);
-    fn();
-  }, []);
+    if (urlId) {
+      console.log("Fetching URL for id:", urlId);
+      fn();
+    }
+  }, [urlId]);
 
   useEffect(() => {
     console.log("Data received:", data);
@@ -29,9 +32,22 @@ const RedirectLink = () => {
     if (!loading && data && data.original_url) {
       console.log("Redirecting to:", data.original_url);
       fnStats();
-      window.location.href = data.original_url;
+      // Ensure the URL has a protocol
+      const url = data.original_url.startsWith('http') 
+        ? data.original_url 
+        : `https://${data.original_url}`;
+      window.location.href = url;
     }
   }, [loading, data]);
+
+  if (!urlId) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-screen">
+        <h1 className="text-2xl font-bold text-red-500">Invalid URL</h1>
+        <p className="text-gray-500">No URL identifier provided.</p>
+      </div>
+    );
+  }
 
   if (loading || loadingStats) {
     return (
@@ -39,7 +55,7 @@ const RedirectLink = () => {
         <BarLoader width={"100%"} color="#36d7b7" />
         <br />
         <p className="text-lg">Redirecting...</p>
-        <p className="text-sm text-gray-500">URL ID: {id}</p>
+        <p className="text-sm text-gray-500">URL ID: {urlId}</p>
       </div>
     );
   }
@@ -49,7 +65,7 @@ const RedirectLink = () => {
       <div className="flex flex-col items-center justify-center min-h-screen">
         <h1 className="text-2xl font-bold text-red-500">Link not found!</h1>
         <p className="text-gray-500">The requested URL does not exist.</p>
-        <p className="text-sm text-gray-400 mt-2">URL ID: {id}</p>
+        <p className="text-sm text-gray-400 mt-2">URL ID: {urlId}</p>
         {error && (
           <p className="text-sm text-red-400 mt-2">Error: {error.message}</p>
         )}
