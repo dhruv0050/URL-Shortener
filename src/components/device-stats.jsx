@@ -47,3 +47,5 @@ export default function DeviceStats({stats}) {
     </div>
   );
 }
+
+//stats of device
